@@ -129,7 +129,15 @@ data_extract|>
 ```{r}
 data_extract|>
   select(id,pre_post,intervention_type)|>
+  separate_rows(pre_post, sep = ",")|>
   ggplot(aes(x=intervention_type,fill=pre_post))+geom_bar()+
+  theme_classic()+theme(legend.position = "bottom")
+
+
+data_extract|>
+  select(theme,intervention_type)|>
+  separate_rows(theme, sep = ",")|>
+  ggplot(aes(x=intervention_type,fill=theme))+geom_bar()+
   theme_classic()+theme(legend.position = "bottom")
 ```
 
