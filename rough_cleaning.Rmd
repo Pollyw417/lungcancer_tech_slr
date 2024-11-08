@@ -1,0 +1,41 @@
+---
+title: "slr_rough_cleaning"
+author: "Polly Wu (rw3031)"
+date: "2024-10-01"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+library(readxl)
+```
+
+```{r}
+slr = read_excel("./Review file_after dupplicate removal.xlsx", sheet = "Sheet1") |>
+  janitor::clean_names()|>
+  mutate(d1=ifelse(is.na(decision_1_polly), 0, 1))|>
+  select(title,year,journal,abstract,d1)|>
+  relocate(d1,title,abstract)
+```
+
+title or abstract does not contain patient 
+
+
+```{r}
+slr =
+  slr|>
+  mutate(d1 = case_when(
+    abstract  ~ "High",
+    value > 4 ~ "Medium",
+    TRUE ~ "Low"
+  ))
+
+print(data)
+
+  
+```
+
+```{r}
+
+```
+
