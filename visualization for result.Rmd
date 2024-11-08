@@ -1,0 +1,135 @@
+---
+title: "Visualization"
+author: "Polly Wu (rw3031)"
+date: "2024-11-07"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(ggplot2)
+library(rworldmap)
+```
+
+```{r}
+data_extract = 
+  read_excel("./Data Extraction Sheet.xlsx")|>
+  janitor::clean_names()
+```
+# the plot for year of publication
+
+```{r}
+year_plot =
+data_extract|>
+  ggplot(aes(x=year))+geom_histogram( fill = "#08519c")+
+  theme_classic()+
+  labs(x = "Year of Publication",
+       title = "Distribution of Year of Publication")
+
+year_plot
+
+ggsave("year_visualization.png", plot = year_plot)
+```
+# the plot for geographic region of publication
+
+```{r}
+country_count =
+data_extract|>
+  select(country_region)|>
+  mutate(country_region = gsub("10 clinics across ", "", country_region)) |>
+  separate_rows(country_region, sep = ", ") |>
+  mutate(country_region = trimws(country_region))|>
+  mutate(country_region = str_replace(country_region, "Hong Kong/China", "Hong Kong"),
+         country_region = str_replace(country_region, "and Sweden", "Sweden"),
+         country_region = str_replace(country_region, "US", "United States")
+         )|>
+  group_by(country_region)|>
+  summarise(count=n())
+```
+
+```{r}
+world_map <- joinCountryData2Map(country_count, joinCode = "NAME", nameJoinColumn = "country_region")
+
+blue_palette <- rev(c("#08306b", "#08519c", "#2171b5", "#4292c6", "#6baed6", "#9ecae1", "#c6dbef", "#deebf7"))
+
+png("map_visualization.png", width = 800, height = 600)
+
+mapCountryData(world_map, nameColumnToPlot = "count", catMethod = "fixedWidth", colourPalette = blue_palette, mapTitle = "Geographic Distribution regarding Publications")
+
+dev.off()
+
+```
+# type of interventions 
+
+```{r}
+data_extract|>
+  group_by(intervention_type)|>
+  summarise(count = n())|>
+  arrange(desc(count))
+
+
+data_extract|>
+  select(id,intervention_type)|>
+  arrange(desc(intervention_type))
+```
+## settings
+
+```{r}
+data_extract|>
+  group_by(setting)|>
+  summarise(count = n())|>
+  arrange(desc(count))
+
+data_extract|>
+  filter(setting == "home-based")
+```
+## stage
+
+```{r}
+data_extract|>
+  select(id,stage_2)|>
+  arrange(desc(stage_2))
+
+
+data_extract|>
+  select(id,stage_2)|>
+  group_by(stage_2)|>
+  summarise(n())
+```
+ 
+## intervention design * type 
+
+```{r}
+data_extract|>
+  group_by(intervention_type,commercial_tool_designed_specifically_for_the_study)|>
+  summarise(count=n())|>
+  pivot_wider(
+    values_from = count,
+    names_from = commercial_tool_designed_specifically_for_the_study
+  )|>knitr::kable()
+  
+```
+
+```{r}
+data_extract|>
+  select(id,pre_post,intervention_type)|>
+  mutate(
+    Pre_treatment = ifelse(str_detect(pre_post, "Pre-treatment"), 1, 0),
+    During_treatment = ifelse(str_detect(pre_post, "During-treatment"), 1, 0),
+    Post_treatment = ifelse(str_detect(pre_post, "Post-treatment"), 1, 0)
+  )|>
+  group_by(intervention_type,pre_post)|>
+  summarise(count=n())|>
+  pivot_wider(
+    values_from = count,
+    names_from = pre_post
+  )
+```
+```{r}
+data_extract|>
+  select(id,pre_post,intervention_type)|>
+  ggplot(aes(x=intervention_type,fill=pre_post))+geom_bar()+
+  theme_classic()+theme(legend.position = "bottom")
+```
+
