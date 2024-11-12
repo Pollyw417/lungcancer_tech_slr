@@ -126,6 +126,8 @@ data_extract|>
     names_from = pre_post
   )
 ```
+
+
 ```{r}
 data_extract|>
   select(id,pre_post,intervention_type)|>
