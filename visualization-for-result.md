@@ -226,9 +226,9 @@ data_extract|>
 ``` r
 data_extract|>
   group_by(intervention_type,commercial_tool_designed_specifically_for_the_study)|>
-  summarise(count=n())|>
+  summarise(id=paste(unique(id),collapse = ","))|>
   pivot_wider(
-    values_from = count,
+    values_from = id,
     names_from = commercial_tool_designed_specifically_for_the_study
   )|>knitr::kable()
 ```
@@ -237,13 +237,13 @@ data_extract|>
     ## the `.groups` argument.
 
 | intervention_type                   | designed for the study | commercial tool | not specified |
-|:------------------------------------|-----------------------:|----------------:|--------------:|
-| electronic questionnaire/assessment |                      2 |              NA |            NA |
-| mobile application                  |                      6 |               1 |             1 |
-| telemedicine                        |                      5 |               3 |            NA |
-| virtual reality                     |                      1 |              NA |            NA |
-| wearable device                     |                     NA |               2 |            NA |
-| website/online platform             |                      5 |               2 |             1 |
+|:------------------------------------|:-----------------------|:----------------|:--------------|
+| electronic questionnaire/assessment | 17,24                  | NA              | NA            |
+| mobile application                  | 26,11,13,3,6,28        | 5               | 12            |
+| telemedicine                        | 14,23,27,2,19          | 10,9,25         | NA            |
+| virtual reality                     | 21                     | NA              | NA            |
+| wearable device                     | NA                     | 29,15           | NA            |
+| website/online platform             | 16,4,22,18,1           | 8,20            | 7             |
 
 ``` r
 data_extract|>
@@ -434,3 +434,77 @@ data_extract|>
 | website/online platform             | emotional and social support       | 4, 18, 1          | 20             | NA                              | 16                             | NA                                            | NA            |
 | website/online platform             | monitoring and tracking            | 4, 7, 18          | NA             | NA                              | NA                             | NA                                            | NA            |
 | website/online platform             | promotion of healthy behavior      | 1                 | NA             | NA                              | NA                             | NA                                            | NA            |
+
+# pre_treatment support
+
+``` r
+data_extract|>
+  filter(str_detect(pre_post, regex("pre-treatment", ignore_case = TRUE)))|>
+  select(id, pre_post,impact_of_technology_on_treatment_outcomes)|>
+  group_by(pre_post)|>
+  knitr::kable()
+```
+
+|  id | pre_post                                      | impact_of_technology_on_treatment_outcomes                                                                                                                                                                                                            |
+|----:|:----------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|  16 | Pre-treatment,During-treatment                | Improved decision-making, emotional support, reduced anxiety.                                                                                                                                                                                         |
+|   9 | Pre-treatment,During-treatment,Post-treatment | High adherence to the program; improved functional capacity, improving trajectory for patient distress                                                                                                                                                |
+|   8 | Pre-treatment                                 | Website improved patient understanding of SABR and helped reduce anxiety based on the qualitative outcome                                                                                                                                             |
+|  27 | Pre-treatment,During-treatment                | Time to treatment initiation did not differ between telemedicine and in-person visits across all treatment modalities, for patients who are newly diagnosied the median time from referral to initial visit were shorter among the telemedicine group |
+
+# during treatment
+
+``` r
+data_extract|>
+  filter(str_detect(pre_post, regex("during-treatment", ignore_case = TRUE)))|>
+  select(id, pre_post,impact_of_technology_on_treatment_outcomes)|>
+  group_by(pre_post)|>
+  knitr::kable()
+```
+
+|  id | pre_post                                      | impact_of_technology_on_treatment_outcomes                                                                                                                                                                                                                                                                 |
+|----:|:----------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|  10 | During-treatment,Post-treatment               | intervention participants had statistically significant and clinically meaningful improved HRQL (SGRQ total, symptom, and impact scores) (standardized effect size: -1.03 to -1.30).                                                                                                                       |
+|  26 | During-treatment                              | report of relevant symptoms after chemotherapy                                                                                                                                                                                                                                                             |
+|  11 | During-treatment                              | improvement in excersice capacity, decrease pain severity at 6 weeks, improve in anxiety and depression at 12 week, no change on QoL, reduction in unexpected visit to ED                                                                                                                                  |
+|  16 | Pre-treatment,During-treatment                | Improved decision-making, emotional support, reduced anxiety.                                                                                                                                                                                                                                              |
+|   4 | During-treatment                              | Improved communication, enhanced engagement, better psychosocial needs identification, easier planning of care activites, high reponse rate for patients during follow up                                                                                                                                  |
+|  17 | During-treatment                              | 90.9% compliance rate for lung cancer patients, enhanced communication, symptom management, and care adjustments.                                                                                                                                                                                          |
+|   9 | Pre-treatment,During-treatment,Post-treatment | High adherence to the program; improved functional capacity, improving trajectory for patient distress                                                                                                                                                                                                     |
+|  14 | During-treatment,Post-treatment               | Improved identification of patient needs and patient report improved quality of life at follow up assessment, emotional support, 75% reduction in high concerns                                                                                                                                            |
+|  21 | During-treatment                              | patients had an altered perception of time, no signficant difference in symptom distress, no cybersickness                                                                                                                                                                                                 |
+|  22 | During-treatment                              | Reduced symptom distress in CHESS arm versus Internet arm at 4 and 6 months, with possible survival benefit for CHESS users                                                                                                                                                                                |
+|  23 | During-treatment                              | Telehealth visits were found equivalent to in-person care in maintaining quality of life, no difference in satisfaction with care, anxiety and depression symptoms, use of approach-oriented or avoidant coping strategies, or perceptions of the primary goal of treatment and curability of their cancer |
+|  24 | During-treatment                              | Improved patient awareness of symptoms and facilitated communication with healthcare providers; advantages of electronic assessment mentioned in interview: clear presentation, expedited assessment, user-friendliness                                                                                    |
+|   3 | During-treatment                              | Improved QoL at week 12, but not week 6 or week 18, improved patient-HCP communication                                                                                                                                                                                                                     |
+|   7 | During-treatment                              | High potential for supporting self-management of chronic breathlessness if implemented, though outcomes not directly measured                                                                                                                                                                              |
+|  25 | During-treatment                              | patients reported symptom relief, lifestyle improvements, improved self efficacy                                                                                                                                                                                                                           |
+|  29 | During-treatment                              | Degree of physical activity is correlated with patient reported outcome (brief fatigue inventory, MD Anderson Symptom Inventory)                                                                                                                                                                           |
+|  18 | During-treatment                              | Patients in the CHESS+CR group had improved symptoms reported more often than those in CHESS-only (53% vs. 26%), web-based reporting let to more timely symptom management                                                                                                                                 |
+|  28 | During-treatment                              | SCH participants had lower symptom severity, fewer severe/moderate symptom days, and more mild/no symptom days compared to UC.                                                                                                                                                                             |
+|   1 | During-treatment                              | 61% (17/28) reported that this information enhanced knowledge of their disease and 43% (12/28) indicated that it enhanced their sense of control over their disease, no improvement of patient outcome over time                                                                                           |
+|  27 | Pre-treatment,During-treatment                | Time to treatment initiation did not differ between telemedicine and in-person visits across all treatment modalities, for patients who are newly diagnosied the median time from referral to initial visit were shorter among the telemedicine group                                                      |
+|   2 | During-treatment                              | Older adults reported greater increase in HRQOL than younger adults, the increase are statistically signficant when comparing baseline with 6 months                                                                                                                                                       |
+|  12 | During-treatment                              | Reduction in reported symptom severity in the SCH group compared to the control group, days reporting one or more moderate-to-severe patient symptom reduce by 38%                                                                                                                                         |
+|  15 | During-treatment                              | Higher activity (angle and spin values) correlated with survival, wearable device successfully evaluate prognosis of patients and predict survival outcomes for patients in hospice care                                                                                                                   |
+|  19 | During-treatment                              | A signifcant 2.1 point decrease in fatigue level comparing pre- and post programme scores. Patients show increase in moderate physical acvtivity time, and intrinsic motivation to practice PA                                                                                                             |
+
+# post_treatment
+
+``` r
+data_extract|>
+  filter(str_detect(pre_post, regex("post-treatment", ignore_case = TRUE)))|>
+  select(id, pre_post,impact_of_technology_on_treatment_outcomes)|>
+  group_by(pre_post)|>
+  knitr::kable()
+```
+
+|  id | pre_post                                      | impact_of_technology_on_treatment_outcomes                                                                                                                                           |
+|----:|:----------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|  10 | During-treatment,Post-treatment               | intervention participants had statistically significant and clinically meaningful improved HRQL (SGRQ total, symptom, and impact scores) (standardized effect size: -1.03 to -1.30). |
+|   5 | Post-treatment                                | Positive intentions from HCPs and patients to use the application; improved confidence in recovery and reduced insecurity about symptoms and rehabilitation progress.                |
+|   9 | Pre-treatment,During-treatment,Post-treatment | High adherence to the program; improved functional capacity, improving trajectory for patient distress                                                                               |
+|  14 | During-treatment,Post-treatment               | Improved identification of patient needs and patient report improved quality of life at follow up assessment, emotional support, 75% reduction in high concerns                      |
+|  13 | Post-treatment                                | Significant improvement in survival with median survival of 22.4 months in the experimental group versus 16.7 months in the control group                                            |
+|  20 | Post-treatment                                | Improved quality of life (SF-36 scores) and high patient satisfaction in the remote group compared to conventional care group                                                        |
+|   6 | Post-treatment                                | Improved overall survival and better performance status at relapse in the intervention group, reduced imaging needs                                                                  |
