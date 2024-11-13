@@ -2,7 +2,7 @@
 title: "Visualization"
 author: "Polly Wu (rw3031)"
 date: "2024-11-07"
-output: html_document
+output: github_document
 ---
 
 ```{r}
@@ -17,6 +17,7 @@ data_extract =
   read_excel("./Data Extraction Sheet.xlsx")|>
   janitor::clean_names()
 ```
+
 # the plot for year of publication
 
 ```{r}
@@ -31,6 +32,7 @@ year_plot
 
 ggsave("year_visualization.png", plot = year_plot)
 ```
+
 # the plot for geographic region of publication
 
 ```{r}
@@ -60,6 +62,7 @@ mapCountryData(world_map, nameColumnToPlot = "count", catMethod = "fixedWidth", 
 dev.off()
 
 ```
+
 # type of interventions 
 
 ```{r}
@@ -73,6 +76,7 @@ data_extract|>
   select(id,intervention_type)|>
   arrange(desc(intervention_type))
 ```
+
 ## settings
 
 ```{r}
@@ -84,6 +88,7 @@ data_extract|>
 data_extract|>
   filter(setting == "home-based")
 ```
+
 ## stage
 
 ```{r}
@@ -103,9 +108,9 @@ data_extract|>
 ```{r}
 data_extract|>
   group_by(intervention_type,commercial_tool_designed_specifically_for_the_study)|>
-  summarise(count=n())|>
+  summarise(id=paste(unique(id),collapse = ","))|>
   pivot_wider(
-    values_from = count,
+    values_from = id,
     names_from = commercial_tool_designed_specifically_for_the_study
   )|>knitr::kable()
   
@@ -133,13 +138,101 @@ data_extract|>
   select(id,pre_post,intervention_type)|>
   separate_rows(pre_post, sep = ",")|>
   ggplot(aes(x=intervention_type,fill=pre_post))+geom_bar()+
-  theme_classic()+theme(legend.position = "bottom")
+  theme(legend.position = "bottom")
 
 
 data_extract|>
   select(theme,intervention_type)|>
   separate_rows(theme, sep = ",")|>
   ggplot(aes(x=intervention_type,fill=theme))+geom_bar()+
-  theme_classic()+theme(legend.position = "bottom")
+  theme(legend.position = "bottom")
+```
+
+# intervention type over pre_post
+
+```{r}
+data_extract|>
+  select(id,pre_post,intervention_type)|>
+  separate_rows(pre_post, sep = ",")|>
+  group_by(intervention_type,pre_post)|>
+  summarise(count = n())|>
+  pivot_wider(
+    names_from = pre_post,
+    values_from = count
+  )|>
+  knitr::kable()
+```
+
+
+# intervention type over theme
+
+```{r}
+data_extract|>
+  select(theme,intervention_type)|>
+  separate_rows(theme, sep = ",")|>
+  group_by(intervention_type,theme)|>
+  summarise(count = n())|>
+  pivot_wider(
+    names_from = theme,
+    values_from = count
+  )|>
+  knitr::kable()
+```
+
+```{r}
+data_extract|>
+  select(theme,intervention_type, pre_post)|>
+  separate_rows(theme, sep = ",")|>
+  group_by(intervention_type,theme,pre_post)|>
+  summarise(count = n())|>
+  pivot_wider(
+    names_from = pre_post,
+    values_from = count
+  )|>
+  knitr::kable()
+```
+
+```{r}
+data_extract|>
+  select(id, theme,intervention_type, pre_post)|>
+  separate_rows(theme, sep = ",")|>
+  group_by(intervention_type,theme,pre_post)|>
+  summarise(ids = paste(unique(id), collapse = ", ")) |>
+  pivot_wider(
+    names_from = pre_post,
+    values_from = ids
+  )|>
+  knitr::kable()
+```
+
+# pre_treatment support
+
+```{r}
+data_extract|>
+  filter(str_detect(pre_post, regex("pre-treatment", ignore_case = TRUE)))|>
+  select(id, pre_post,impact_of_technology_on_treatment_outcomes)|>
+  group_by(pre_post)|>
+  knitr::kable()
+```
+
+#  during treatment
+
+```{r}
+data_extract|>
+  filter(str_detect(pre_post, regex("during-treatment", ignore_case = TRUE)))|>
+  select(id, pre_post,impact_of_technology_on_treatment_outcomes)|>
+  group_by(pre_post)|>
+  knitr::kable()
+  
+```
+
+# post_treatment 
+
+```{r}
+data_extract|>
+  filter(str_detect(pre_post, regex("post-treatment", ignore_case = TRUE)))|>
+  select(id, pre_post,impact_of_technology_on_treatment_outcomes)|>
+  group_by(pre_post)|>
+  knitr::kable()
 ```
 
