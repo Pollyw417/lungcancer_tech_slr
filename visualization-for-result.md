@@ -303,25 +303,42 @@ data_extract|>
     ## #   `Pre-treatment,During-treatment,Post-treatment` <int>,
     ## #   `Pre-treatment` <int>
 
+## plot for pre-post over intervention type
+
 ``` r
-data_extract|>
-  select(id,pre_post,intervention_type)|>
-  separate_rows(pre_post, sep = ",")|>
-  ggplot(aes(x=intervention_type,fill=pre_post))+geom_bar()+
+library(viridis)
+```
+
+    ## Loading required package: viridisLite
+
+``` r
+data_extract |>
+  select(id, pre_post, intervention_type) |>
+  separate_rows(pre_post, sep = ",") |>
+  ggplot(aes(x = intervention_type, fill = pre_post)) +
+  geom_bar() +
+  scale_fill_viridis_d() +
   theme(legend.position = "bottom")
 ```
 
 ![](visualization-for-result_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
 
+## plot for theme over intervention type
+
 ``` r
-data_extract|>
-  select(theme,intervention_type)|>
-  separate_rows(theme, sep = ",")|>
-  ggplot(aes(x=intervention_type,fill=theme))+geom_bar()+
+theme_intervention =
+data_extract |>
+  select(theme, intervention_type) |>
+  separate_rows(theme, sep = ",") |>
+  ggplot(aes(x = intervention_type, fill = theme)) +
+  geom_bar() +
+  scale_fill_viridis_d() +
   theme(legend.position = "bottom")
+
+theme_intervention
 ```
 
-![](visualization-for-result_files/figure-gfm/unnamed-chunk-12-2.png)<!-- -->
+![](visualization-for-result_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
 
 # intervention type over pre_post
 
@@ -368,14 +385,14 @@ data_extract|>
     ## `summarise()` has grouped output by 'intervention_type'. You can override using
     ## the `.groups` argument.
 
-| intervention_type                   | communication and coordination | education and information delivery | monitoring and tracking | decision support and guidance | emotional and social support | promotion of healthy behavior |
-|:------------------------------------|-------------------------------:|-----------------------------------:|------------------------:|------------------------------:|-----------------------------:|------------------------------:|
-| electronic questionnaire/assessment |                              1 |                                  1 |                       2 |                            NA |                           NA |                            NA |
-| mobile application                  |                              6 |                                 NA |                       6 |                             1 |                            3 |                            NA |
-| telemedicine                        |                              5 |                                  4 |                       4 |                             2 |                            2 |                             4 |
-| virtual reality                     |                             NA |                                  1 |                      NA |                            NA |                           NA |                             1 |
-| wearable device                     |                              2 |                                  1 |                       1 |                             1 |                            1 |                            NA |
-| website/online platform             |                              6 |                                  2 |                       6 |                            NA |                            2 |                             1 |
+| intervention_type                   | communication and coordination | monitoring and tracking | decision support and guidance | education and information delivery | promotion of healthy behavior | emotional and social support |
+|:------------------------------------|-------------------------------:|------------------------:|------------------------------:|-----------------------------------:|------------------------------:|-----------------------------:|
+| electronic questionnaire/assessment |                              2 |                       2 |                            NA |                                 NA |                            NA |                           NA |
+| mobile application                  |                              6 |                       8 |                             2 |                                  1 |                             1 |                           NA |
+| telemedicine                        |                              7 |                       4 |                             1 |                                  3 |                             3 |                            2 |
+| virtual reality                     |                             NA |                      NA |                            NA |                                 NA |                            NA |                            1 |
+| wearable device                     |                             NA |                       2 |                            NA |                                 NA |                             1 |                           NA |
+| website/online platform             |                              5 |                       3 |                             1 |                                  5 |                             1 |                            5 |
 
 ``` r
 data_extract|>
@@ -395,31 +412,28 @@ data_extract|>
 
 | intervention_type                   | theme                              | During-treatment | Post-treatment | During-treatment,Post-treatment | Pre-treatment,During-treatment | Pre-treatment,During-treatment,Post-treatment | Pre-treatment |
 |:------------------------------------|:-----------------------------------|-----------------:|---------------:|--------------------------------:|-------------------------------:|----------------------------------------------:|--------------:|
-| electronic questionnaire/assessment | communication and coordination     |                1 |             NA |                              NA |                             NA |                                            NA |            NA |
-| electronic questionnaire/assessment | education and information delivery |                1 |             NA |                              NA |                             NA |                                            NA |            NA |
+| electronic questionnaire/assessment | communication and coordination     |                2 |             NA |                              NA |                             NA |                                            NA |            NA |
 | electronic questionnaire/assessment | monitoring and tracking            |                2 |             NA |                              NA |                             NA |                                            NA |            NA |
 | mobile application                  | communication and coordination     |                4 |              2 |                              NA |                             NA |                                            NA |            NA |
-| mobile application                  | decision support and guidance      |               NA |              1 |                              NA |                             NA |                                            NA |            NA |
-| mobile application                  | emotional and social support       |               NA |              3 |                              NA |                             NA |                                            NA |            NA |
-| mobile application                  | monitoring and tracking            |                4 |              2 |                              NA |                             NA |                                            NA |            NA |
-| telemedicine                        | communication and coordination     |                3 |             NA |                               1 |                              1 |                                            NA |            NA |
-| telemedicine                        | decision support and guidance      |                1 |             NA |                              NA |                             NA |                                             1 |            NA |
-| telemedicine                        | education and information delivery |                1 |             NA |                               2 |                             NA |                                             1 |            NA |
-| telemedicine                        | emotional and social support       |               NA |             NA |                               2 |                             NA |                                            NA |            NA |
-| telemedicine                        | monitoring and tracking            |                3 |             NA |                              NA |                              1 |                                            NA |            NA |
-| telemedicine                        | promotion of healthy behavior      |                2 |             NA |                               2 |                             NA |                                            NA |            NA |
-| virtual reality                     | education and information delivery |                1 |             NA |                              NA |                             NA |                                            NA |            NA |
-| virtual reality                     | promotion of healthy behavior      |                1 |             NA |                              NA |                             NA |                                            NA |            NA |
-| wearable device                     | communication and coordination     |                2 |             NA |                              NA |                             NA |                                            NA |            NA |
-| wearable device                     | decision support and guidance      |                1 |             NA |                              NA |                             NA |                                            NA |            NA |
-| wearable device                     | education and information delivery |                1 |             NA |                              NA |                             NA |                                            NA |            NA |
-| wearable device                     | emotional and social support       |                1 |             NA |                              NA |                             NA |                                            NA |            NA |
-| wearable device                     | monitoring and tracking            |                1 |             NA |                              NA |                             NA |                                            NA |            NA |
-| website/online platform             | communication and coordination     |                4 |              1 |                              NA |                             NA |                                            NA |             1 |
-| website/online platform             | education and information delivery |                1 |             NA |                              NA |                             NA |                                            NA |             1 |
-| website/online platform             | emotional and social support       |                1 |             NA |                              NA |                             NA |                                            NA |             1 |
-| website/online platform             | monitoring and tracking            |                4 |              1 |                              NA |                              1 |                                            NA |            NA |
-| website/online platform             | promotion of healthy behavior      |               NA |             NA |                              NA |                              1 |                                            NA |            NA |
+| mobile application                  | decision support and guidance      |                2 |             NA |                              NA |                             NA |                                            NA |            NA |
+| mobile application                  | education and information delivery |                1 |             NA |                              NA |                             NA |                                            NA |            NA |
+| mobile application                  | monitoring and tracking            |                5 |              3 |                              NA |                             NA |                                            NA |            NA |
+| mobile application                  | promotion of healthy behavior      |               NA |              1 |                              NA |                             NA |                                            NA |            NA |
+| telemedicine                        | communication and coordination     |                4 |             NA |                               1 |                              1 |                                             1 |            NA |
+| telemedicine                        | decision support and guidance      |               NA |             NA |                               1 |                             NA |                                            NA |            NA |
+| telemedicine                        | education and information delivery |                1 |             NA |                               1 |                             NA |                                             1 |            NA |
+| telemedicine                        | emotional and social support       |               NA |             NA |                               1 |                             NA |                                             1 |            NA |
+| telemedicine                        | monitoring and tracking            |                3 |             NA |                               1 |                             NA |                                            NA |            NA |
+| telemedicine                        | promotion of healthy behavior      |                1 |             NA |                               1 |                             NA |                                             1 |            NA |
+| virtual reality                     | emotional and social support       |                1 |             NA |                              NA |                             NA |                                            NA |            NA |
+| wearable device                     | monitoring and tracking            |                2 |             NA |                              NA |                             NA |                                            NA |            NA |
+| wearable device                     | promotion of healthy behavior      |                1 |             NA |                              NA |                             NA |                                            NA |            NA |
+| website/online platform             | communication and coordination     |                3 |              1 |                              NA |                              1 |                                            NA |            NA |
+| website/online platform             | decision support and guidance      |               NA |             NA |                              NA |                             NA |                                            NA |             1 |
+| website/online platform             | education and information delivery |                3 |             NA |                              NA |                              1 |                                            NA |             1 |
+| website/online platform             | emotional and social support       |                3 |              1 |                              NA |                              1 |                                            NA |            NA |
+| website/online platform             | monitoring and tracking            |                3 |             NA |                              NA |                             NA |                                            NA |            NA |
+| website/online platform             | promotion of healthy behavior      |                1 |             NA |                              NA |                             NA |                                            NA |            NA |
 
 ``` r
 data_extract|>
@@ -439,31 +453,28 @@ data_extract|>
 
 | intervention_type                   | theme                              | During-treatment | Post-treatment | During-treatment,Post-treatment | Pre-treatment,During-treatment | Pre-treatment,During-treatment,Post-treatment | Pre-treatment |
 |:------------------------------------|:-----------------------------------|:-----------------|:---------------|:--------------------------------|:-------------------------------|:----------------------------------------------|:--------------|
-| electronic questionnaire/assessment | communication and coordination     | 13               | NA             | NA                              | NA                             | NA                                            | NA            |
-| electronic questionnaire/assessment | education and information delivery | 7                | NA             | NA                              | NA                             | NA                                            | NA            |
+| electronic questionnaire/assessment | communication and coordination     | 7, 13            | NA             | NA                              | NA                             | NA                                            | NA            |
 | electronic questionnaire/assessment | monitoring and tracking            | 7, 13            | NA             | NA                              | NA                             | NA                                            | NA            |
-| mobile application                  | communication and coordination     | 2, 3, 23, 27     | 4, 14          | NA                              | NA                             | NA                                            | NA            |
-| mobile application                  | decision support and guidance      | NA               | 14             | NA                              | NA                             | NA                                            | NA            |
-| mobile application                  | emotional and social support       | NA               | 4, 14, 21      | NA                              | NA                             | NA                                            | NA            |
-| mobile application                  | monitoring and tracking            | 2, 3, 15, 23     | 4, 14          | NA                              | NA                             | NA                                            | NA            |
-| telemedicine                        | communication and coordination     | 12, 19, 26       | NA             | 9                               | 25                             | NA                                            | NA            |
-| telemedicine                        | decision support and guidance      | 12               | NA             | NA                              | NA                             | 8                                             | NA            |
-| telemedicine                        | education and information delivery | 19               | NA             | 1, 9                            | NA                             | 8                                             | NA            |
-| telemedicine                        | emotional and social support       | NA               | NA             | 1, 9                            | NA                             | NA                                            | NA            |
-| telemedicine                        | monitoring and tracking            | 12, 26, 29       | NA             | NA                              | 25                             | NA                                            | NA            |
-| telemedicine                        | promotion of healthy behavior      | 19, 29           | NA             | 1, 9                            | NA                             | NA                                            | NA            |
-| virtual reality                     | education and information delivery | 10               | NA             | NA                              | NA                             | NA                                            | NA            |
-| virtual reality                     | promotion of healthy behavior      | 10               | NA             | NA                              | NA                             | NA                                            | NA            |
-| wearable device                     | communication and coordination     | 20, 28           | NA             | NA                              | NA                             | NA                                            | NA            |
-| wearable device                     | decision support and guidance      | 28               | NA             | NA                              | NA                             | NA                                            | NA            |
-| wearable device                     | education and information delivery | 28               | NA             | NA                              | NA                             | NA                                            | NA            |
-| wearable device                     | emotional and social support       | 20               | NA             | NA                              | NA                             | NA                                            | NA            |
-| wearable device                     | monitoring and tracking            | 28               | NA             | NA                              | NA                             | NA                                            | NA            |
-| website/online platform             | communication and coordination     | 6, 18, 22, 24    | 17             | NA                              | NA                             | NA                                            | 16            |
-| website/online platform             | education and information delivery | 22               | NA             | NA                              | NA                             | NA                                            | 16            |
-| website/online platform             | emotional and social support       | 18               | NA             | NA                              | NA                             | NA                                            | 16            |
-| website/online platform             | monitoring and tracking            | 6, 11, 18, 24    | 17             | NA                              | 5                              | NA                                            | NA            |
-| website/online platform             | promotion of healthy behavior      | NA               | NA             | NA                              | 5                              | NA                                            | NA            |
+| mobile application                  | communication and coordination     | 2, 15, 23, 27    | 14, 21         | NA                              | NA                             | NA                                            | NA            |
+| mobile application                  | decision support and guidance      | 23, 27           | NA             | NA                              | NA                             | NA                                            | NA            |
+| mobile application                  | education and information delivery | 23               | NA             | NA                              | NA                             | NA                                            | NA            |
+| mobile application                  | monitoring and tracking            | 2, 3, 15, 23, 27 | 4, 14, 21      | NA                              | NA                             | NA                                            | NA            |
+| mobile application                  | promotion of healthy behavior      | NA               | 4              | NA                              | NA                             | NA                                            | NA            |
+| telemedicine                        | communication and coordination     | 12, 19, 26, 29   | NA             | 9                               | 25                             | 8                                             | NA            |
+| telemedicine                        | decision support and guidance      | NA               | NA             | 9                               | NA                             | NA                                            | NA            |
+| telemedicine                        | education and information delivery | 29               | NA             | 1                               | NA                             | 8                                             | NA            |
+| telemedicine                        | emotional and social support       | NA               | NA             | 9                               | NA                             | 8                                             | NA            |
+| telemedicine                        | monitoring and tracking            | 12, 19, 26       | NA             | 9                               | NA                             | NA                                            | NA            |
+| telemedicine                        | promotion of healthy behavior      | 29               | NA             | 1                               | NA                             | 8                                             | NA            |
+| virtual reality                     | emotional and social support       | 10               | NA             | NA                              | NA                             | NA                                            | NA            |
+| wearable device                     | monitoring and tracking            | 20, 28           | NA             | NA                              | NA                             | NA                                            | NA            |
+| wearable device                     | promotion of healthy behavior      | 20               | NA             | NA                              | NA                             | NA                                            | NA            |
+| website/online platform             | communication and coordination     | 6, 11, 22        | 17             | NA                              | 5                              | NA                                            | NA            |
+| website/online platform             | decision support and guidance      | NA               | NA             | NA                              | NA                             | NA                                            | 16            |
+| website/online platform             | education and information delivery | 11, 18, 24       | NA             | NA                              | 5                              | NA                                            | 16            |
+| website/online platform             | emotional and social support       | 6, 22, 24        | 17             | NA                              | 5                              | NA                                            | NA            |
+| website/online platform             | monitoring and tracking            | 6, 18, 22        | NA             | NA                              | NA                             | NA                                            | NA            |
+| website/online platform             | promotion of healthy behavior      | 24               | NA             | NA                              | NA                             | NA                                            | NA            |
 
 # pre_treatment support
 

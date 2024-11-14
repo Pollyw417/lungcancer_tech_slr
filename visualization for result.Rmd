@@ -144,22 +144,36 @@ data_extract|>
     names_from = pre_post
   )
 ```
-
+## plot for pre-post over intervention type
 
 ```{r}
-data_extract|>
-  select(id,pre_post,intervention_type)|>
-  separate_rows(pre_post, sep = ",")|>
-  ggplot(aes(x=intervention_type,fill=pre_post))+geom_bar()+
-  theme(legend.position = "bottom")
+library(viridis)
 
-
-data_extract|>
-  select(theme,intervention_type)|>
-  separate_rows(theme, sep = ",")|>
-  ggplot(aes(x=intervention_type,fill=theme))+geom_bar()+
+data_extract |>
+  select(id, pre_post, intervention_type) |>
+  separate_rows(pre_post, sep = ",") |>
+  ggplot(aes(x = intervention_type, fill = pre_post)) +
+  geom_bar() +
+  scale_fill_viridis_d() +
   theme(legend.position = "bottom")
 ```
+
+## plot for theme over intervention type
+
+```{r}
+theme_intervention =
+data_extract |>
+  select(theme, intervention_type) |>
+  separate_rows(theme, sep = ",") |>
+  ggplot(aes(x = intervention_type, fill = theme)) +
+  geom_bar() +
+  scale_fill_viridis_d() +
+  theme(legend.position = "bottom")
+
+theme_intervention
+
+```
+
 
 # intervention type over pre_post
 
