@@ -102,17 +102,30 @@ data_extract|>
   group_by(stage_2)|>
   summarise(n())
 ```
- 
+
+## treatment type
+
+```{r}
+data_extract|>
+  select(treatment_2,id)|>
+  separate_rows(treatment_2, sep = ",")|>
+  group_by(treatment_2)|>
+  summarise(id=paste(unique(id),collapse = ","))
+```
+
+
+
 ## intervention design * type 
 
 ```{r}
 data_extract|>
+  select(id,intervention_type,commercial_tool_designed_specifically_for_the_study)|>
   group_by(intervention_type,commercial_tool_designed_specifically_for_the_study)|>
   summarise(id=paste(unique(id),collapse = ","))|>
   pivot_wider(
     values_from = id,
     names_from = commercial_tool_designed_specifically_for_the_study
-  )|>knitr::kable()
+  )
   
 ```
 
