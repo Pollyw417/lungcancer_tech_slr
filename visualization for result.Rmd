@@ -269,3 +269,14 @@ data_extract|>
   knitr::kable()
 ```
 
+
+# challenge
+
+```{r}
+data_extract|>
+  separate_rows(theme, sep = ",")|>
+  select(id, theme, challenges_of_technology_use)|>
+  arrange(theme)|>
+  knitr::kable()
+```
+
