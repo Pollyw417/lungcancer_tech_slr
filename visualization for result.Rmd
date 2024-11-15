@@ -237,8 +237,10 @@ data_extract|>
 ```{r}
 data_extract|>
   filter(str_detect(pre_post, regex("pre-treatment", ignore_case = TRUE)))|>
-  select(id, pre_post,impact_of_technology_on_treatment_outcomes)|>
-  group_by(pre_post)|>
+  select(id, theme,impact_of_technology_on_treatment_outcomes)|>
+  separate_rows(theme, sep = ",")|>
+  group_by(theme)|>
+  arrange(theme)|>
   knitr::kable()
 ```
 
@@ -247,8 +249,10 @@ data_extract|>
 ```{r}
 data_extract|>
   filter(str_detect(pre_post, regex("during-treatment", ignore_case = TRUE)))|>
-  select(id, pre_post,impact_of_technology_on_treatment_outcomes)|>
-  group_by(pre_post)|>
+  select(id, theme, impact_of_technology_on_treatment_outcomes)|>
+  separate_rows(theme, sep = ",")|>
+  group_by(theme)|>
+  arrange(theme)|>
   knitr::kable()
   
 ```
@@ -258,8 +262,10 @@ data_extract|>
 ```{r}
 data_extract|>
   filter(str_detect(pre_post, regex("post-treatment", ignore_case = TRUE)))|>
-  select(id, pre_post,impact_of_technology_on_treatment_outcomes)|>
-  group_by(pre_post)|>
+  select(id, theme,impact_of_technology_on_treatment_outcomes)|>
+  separate_rows(theme, sep = ",")|>
+  group_by(theme)|>
+  arrange(theme)|>
   knitr::kable()
 ```
 
