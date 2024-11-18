@@ -318,7 +318,13 @@ data_extract |>
   ggplot(aes(x = intervention_type, fill = pre_post)) +
   geom_bar() +
   scale_fill_viridis_d() +
-  theme(legend.position = "bottom")
+  theme(
+      legend.position = "bottom",
+      panel.background = element_rect(fill = "white", color = NA),
+      plot.background = element_rect(fill = "white", color = NA),
+      panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank()
+    )
 ```
 
 ![](visualization-for-result_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
@@ -327,13 +333,19 @@ data_extract |>
 
 ``` r
 theme_intervention =
-data_extract |>
-  select(theme, intervention_type) |>
-  separate_rows(theme, sep = ",") |>
-  ggplot(aes(x = intervention_type, fill = theme)) +
-  geom_bar() +
-  scale_fill_viridis_d() +
-  theme(legend.position = "bottom")
+  data_extract |>
+    select(theme, intervention_type) |>
+    separate_rows(theme, sep = ",") |>
+    ggplot(aes(x = intervention_type, fill = theme)) +
+    geom_bar() +
+    scale_fill_viridis_d() +
+    theme(
+      legend.position = "bottom",
+      panel.background = element_rect(fill = "white", color = NA),
+      plot.background = element_rect(fill = "white", color = NA),
+      panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank()
+    )
 
 theme_intervention
 ```
