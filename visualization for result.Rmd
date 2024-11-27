@@ -48,6 +48,9 @@ data_extract|>
          )|>
   group_by(country_region)|>
   summarise(count=n())
+
+country_count|>
+  knitr::kable()
 ```
 
 ```{r}
@@ -110,7 +113,30 @@ data_extract|>
   select(treatment_2,id)|>
   separate_rows(treatment_2, sep = ",")|>
   group_by(treatment_2)|>
-  summarise(id=paste(unique(id),collapse = ","))
+  summarise(id=paste(unique(id),collapse = ","), count = n())
+```
+
+## challenge faced by patients in different treatment regimens 
+
+```{r}
+data_extract|>
+  select(challenge_recode, treatment_2, id)|>
+  separate_rows(challenge_recode, sep = ",")|>
+  group_by(challenge_recode)|>
+  summarise(count = n(),
+            id=paste(unique(id),collapse = ","))|>
+  arrange(desc(count))
+```
+
+```{r}
+data_extract|>
+  select(challenge_recode, treatment_2, id)|>
+  separate_rows(challenge_recode, sep = ",")|>
+  separate_rows(treatment_2, sep = ",")|>
+  group_by(challenge_recode, treatment_2)|>
+  summarise(count = n(),
+            id=paste(unique(id),collapse = ","))|>
+  arrange(treatment_2, desc(count))
 ```
 
 
@@ -234,7 +260,7 @@ data_extract|>
 
 ```{r}
 data_extract|>
-  select(id, theme,intervention_type, pre_post)|>
+  select(id, theme, intervention_type, pre_post)|>
   separate_rows(theme, sep = ",")|>
   group_by(intervention_type,theme,pre_post)|>
   summarise(ids = paste(unique(id), collapse = ", ")) |>
@@ -250,9 +276,8 @@ data_extract|>
 ```{r}
 data_extract|>
   filter(str_detect(pre_post, regex("pre-treatment", ignore_case = TRUE)))|>
-  select(id, theme,impact_of_technology_on_treatment_outcomes)|>
+  select(id, theme,intervention_type,impact_of_technology_on_treatment_outcomes, intervention)|>
   separate_rows(theme, sep = ",")|>
-  group_by(theme)|>
   arrange(theme)|>
   knitr::kable()
 ```
@@ -262,12 +287,11 @@ data_extract|>
 ```{r}
 data_extract|>
   filter(str_detect(pre_post, regex("during-treatment", ignore_case = TRUE)))|>
-  select(id, theme, impact_of_technology_on_treatment_outcomes)|>
+  select(id, theme, intervention_type, impact_of_technology_on_treatment_outcomes, intervention)|>
   separate_rows(theme, sep = ",")|>
   group_by(theme)|>
   arrange(theme)|>
   knitr::kable()
-  
 ```
 
 # post_treatment 
@@ -275,7 +299,7 @@ data_extract|>
 ```{r}
 data_extract|>
   filter(str_detect(pre_post, regex("post-treatment", ignore_case = TRUE)))|>
-  select(id, theme,impact_of_technology_on_treatment_outcomes)|>
+  select(id, theme,intervention_type, impact_of_technology_on_treatment_outcomes, intervention)|>
   separate_rows(theme, sep = ",")|>
   group_by(theme)|>
   arrange(theme)|>
@@ -287,9 +311,18 @@ data_extract|>
 
 ```{r}
 data_extract|>
-  separate_rows(theme, sep = ",")|>
-  select(id, theme, challenges_of_technology_use)|>
-  arrange(theme)|>
+  separate_rows(challenge_theme, sep = ",")|>
+  filter(challenge_theme != "NA")|>
+  select(id, challenge_theme, challenges_of_technology_use)|>
+  arrange(challenge_theme)|>
+  knitr::kable()
+
+data_extract|>
+  separate_rows(challenge_theme, sep = ",")|>
+  filter(challenge_theme != "NA")|>
+  select(id, challenge_theme, challenges_of_technology_use)|>
+  group_by(challenge_theme)|>
+  summarise(count=n())|>
   knitr::kable()
 ```
 
