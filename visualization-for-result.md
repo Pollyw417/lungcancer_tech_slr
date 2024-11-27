@@ -186,7 +186,7 @@ data_extract|>
   filter(setting == "home-based")
 ```
 
-    ## # A tibble: 23 × 33
+    ## # A tibble: 23 × 34
     ##       id title   year objective study_design intervention who_is_delivering_th…¹
     ##    <dbl> <chr>  <dbl> <chr>     <chr>        <chr>        <chr>                 
     ##  1     1 Telem…  2023 We inves… "a parallel… 12-week int… trainer               
@@ -201,7 +201,7 @@ data_extract|>
     ## 10    14 Impro…  2017 To evalu… "Retrospect… self-report… Physician             
     ## # ℹ 13 more rows
     ## # ℹ abbreviated name: ¹​who_is_delivering_the_intervention
-    ## # ℹ 26 more variables: setting <chr>, length_of_interventions <chr>,
+    ## # ℹ 27 more variables: setting <chr>, length_of_interventions <chr>,
     ## #   frequency_of_interventions <chr>,
     ## #   theory_or_non_theory_based_is_it_guided_by_a_specific_framework <chr>,
     ## #   country_region <chr>, patient_demographics <chr>, age_range <chr>,
@@ -770,3 +770,43 @@ data_extract|>
 | low digital literacy              |    13 |
 | privacy                           |     1 |
 | reliability regarding reporting   |     4 |
+
+# author name reference
+
+``` r
+data_extract|>
+  select(id, author)|>
+  knitr::kable()
+```
+
+| id | author |
+|---:|:---|
+| 1 | Ha, Duc M.; Comer, Angela; Dollar, Blythe; Bedoy, Ruth; Ford, Morgan; Gozansky, Wendolyn S.; Zeng, Chan; Arch, Joanna J.; Leach, Heather J.; Malhotra, Atul; Prochazka, Allan V.; Keith, Robert L.; Boxer, Rebecca S. |
+| 2 | Asensio-Cuesta, Sabina; Sánchez-García, Ángel; Soria Comes, Teresa; Maestu, Inmaculada; Martín Ureste, Maria; Conejero, J. Alberto; García-Gómez, Juan M. |
+| 3 | Park, Sojung; Kim, Ji Youn; Lee, Jae Cheol; Kim, Hyeong Ryul; Song, Seungjae; Kwon, Hee; Ji, Wonjun; Choi, Chang Min |
+| 4 | Timmerman, Josien G.; Tönis, Thijs M.; Dekker-van Weering, Marit G. H.; Stuiver, Martijn M.; Wouters, Michel W. J. M.; van Harten, Wim H.; Hermens, Hermie J.; Vollenbroek-Hutten, Miriam M. R. |
+| 5 | Schook, Romane Milia; Linssen, Cilia; Schramel, Franz MNH; Festen, Jan; Lammers, Ernst; Smit, Egbert F.; Postmus, Pieter E.; Westerman, Marjan J. |
+| 6 | Misplon, Sarah; Marneffe, Wim; Himpe, Ulrike; Hellings, Johan; Demedts, Ingel |
+| 7 | Mouillet, Guillaume; Falcoz, Antoine; Fritzsch, Joëlle; Almotlak, Hamadi; Jacoulet, Pascale; Pivot, Xavier; Villanueva, Cristian; Mansi, Laura; Kim, Stefano; Curtit, Elsa; Meneveau, Nathalie; Adotevi, Olivier; Jary, Marine; Eberst, Guillaume; Vienot, Angelique; Calcagno, Fabien; Pozet, Astrid; Djoumakh, Oumelkheir; Borg, Christophe; Westeel, Virginie; Anota, Amélie; Paget-Bailly, Sophie |
+| 8 | Lafaro, Kelly J.; Raz, Dan J.; Kim, Jae Y.; Hite, Sherry; Ruel, Nora; Varatkar, Gouri; Erhunmwunsee, Loretta; Melstrom, Laleh; Lee, Byrne; Singh, Gagandeep; Fong, Yuman; Sun, Virginia |
+| 9 | Rose, Pamela; Quail, Heather; McPhelim, John; Simpson, Mhairi |
+| 10 | Schneider, Susan M.; Hood, Linda E. |
+| 11 | Gustafson, David H.; DuBenske, Lori L.; Namkoong, Kang; Hawkins, Robert; Chih, Ming-Yuan; Atwood, Amy K.; Johnson, Roberta; Bhattacharya, Abhik; Carmack, Cindy L.; Traynor, Anne M.; Campbell, Toby C.; Buss, Mary K.; Govindan, Ramaswamy; Schiller, Joan H.; Cleary, James F. |
+| 12 | Greer, Joseph A.; Temel, Jennifer S.; El-Jawahri, Areej; Rinaldi, Simone; Kamdar, Mihir; Park, Elyse R.; Horick, Nora K.; Pintro, Kedie; Rabideau, Dustin J.; Schwamm, Lee; Feliciano, Josephine; Chua, Isaac; Leventakos, Konstantinos; Fischer, Stacy M.; Campbell, Toby C.; Rabow, Michael W.; Zachariah, Finly; Hanson, Laura C.; Martin, Sara F.; Silveira, Maria; Shoemaker, Laura; Bakitas, Marie; Bauman, Jessica; Spoozak, Lori; Grey, Carl; Blackhall, Leslie; Curseen, Kimberly; O’Mahony, Sean; Smith, Melanie M.; Rhodes, Ramona; Cullinan, Amelia; Jackson, Vicki; REACH PC Investigators; Trotter, Chardria; Gallagher Medeiros, Emily; Calton, Brooke A.; Carlson, Heather A.; Cartagena, Leslie; Diop, Michelle; Evans, Theresa; Jackson, James G.; O’Brien, Karen; Petrillo, Laura A.; Shin, Jennifer S.; Browner, Ilene; Gray, Nathaniel; Awad, Mark; Tulsky, James; Christensen, Kelly J.; Rhee, Laura S.; Strand, Jacob; Gilhuly, Devin; Rondinelli, Nicole; Seibert, Jennifer; Treem, Jonathan; Schueller, Kate; Allen, Gregory; Blakely, Collin; Gubens, Matthew; Lindenfeld, Paul; Mulvey, Claire; Young, Natalie; Dale, William; Luna, Joanna; Mecusker, Eric; Moreno, Jeanine; Ramirez, Carey; Williams, Sari; Gaffney, Sean; Kelly, Cynthia; Lavin, Kyle; Iams, Wade; Robbins, Samuel G.; Kalemkerian, Greg; Lagman, Ruth; Neale, Kyle; Patel, Chirag; Samala, Renato; Weinstein, Elizabeth; McCammon, Susan; Taylor, Richard; Tucker, Rodney; Chwistek, Marcin; Collins, Molly; Edelman, Martin; Judd, Julia; Kinczewski, Leigh; Murphy, Kathleen; Sherry, Dylan; Welsh, Marie; Sinclair, Christian; Wulff-Burchfield, Elizabeth; Gabbard, Jennifer; Statler, Tiffany; Timmins, Nathaniel; Kavalieratos, Dio; Lowers, Jane; Quest, Tammie; Chen, Elaine; LaBellarte, Giulia; Mohinda, Nisha; Munger, Natalie K.; Munroe, Michelle; Patel, Jyoti D.; Szmuilowicz, Eytan; Vermylen, Julia H.; Siropaides, Caitlin H.; Ahern, Christopher G.; Kobin, Emily G.; Vergo, Maxwell T.; Wilson, Matthew M. |
+| 13 | Tang, Fiona W.K.; Chan, Carmen W.H.; Choy, Yin-Ping; Loong, Herbert H.F.; Chow, Ka Ming; So, Winnie K.W. |
+| 14 | Denis, Fabrice; Yossi, Senna; Septans, Anne-Lise; Charron, Alexandre; Voog, Eric; Dupuis, Olivier; Ganem, Gérard; Pointreau, Yoann; Letellier, Christophe |
+| 15 | Arriola, Edurne; Jaal, Jana; Edvardsen, Anne; Silvoniemi, Maria; Araújo, António; Vikström, Anders; Zairi, Eleni; Rodriguez-Mues, Mari Carmen; Roccato, Marco; Schneider, Sophie; Ammann, Johannes |
+| 16 | Hopmans, Wendy; Damman, Olga C.; Timmermans, Danielle RM; Haasbeek, Cornelis JA; Slotman, Ben J.; Senan, Suresh |
+| 17 | LI, Min; ZHANG, Miao; WANG, Heng; PAN, Xuefeng; WU, Wenbin; ZHANG, Qi; LIU, Yun; ZHANG, Hui |
+| 18 | Reilly, Charles C.; Bristowe, Katherine; Roach, Anna; Maddocks, Matthew; Higginson, Irene J. |
+| 19 | Loy, Michelle H.; Prisco, Lauren; Parikh, Chiti |
+| 20 | Miyaji, Tempei; Kawaguchi, Takashi; Azuma, Kanako; Suzuki, Shinya; Sano, Yoko; Akatsu, Moe; Torii, Ayako; Kamimura, Tadamasa; Ozawa, Yuki; Tsuchida, Akihiko; Eriguchi, Daisuke; Hashiguchi, Mizuha; Nishino, Makoto; Nishi, Motohide; Inadome, Yumi; Yamazaki, Tsutomu; Kiuchi, Takahiro; Yamaguchi, Takuhiro |
+| 21 | Denis, Fabrice; Lethrosne, Claire; Pourel, Nicolas; Molinier, Olivier; Pointreau, Yoann; Domont, Julien; Bourgeois, Hugues; Senellart, Hélène; Trémolières, Pierre; Lizée, Thibaut; Bennouna, Jaafar; Urban, Thierry; El Khouri, Claude; Charron, Alexandre; Septans, Anne-Lise; Balavoine, Magali; Landry, Sébastien; Solal-Céligny, Philippe; Letellier, Christophe |
+| 22 | Gustafson, David H.; DuBenske, Lori L.; Atwood, Amy K.; Chih, Ming-Yuan; Johnson, Roberta A.; McTavish, Fiona; Quanbeck, Andrew; Brown, Roger L.; Cleary, James F.; Shah, Dhavan |
+| 23 | Mooney, Kathi H.; Beck, Susan L.; Wong, Bob; Dunson, William; Wujcik, Debra; Whisenant, Meagan; Donaldson, Gary |
+| 24 | Groen, Wim G.; Kuijpers, Wilma; Oldenburg, Hester SA; Wouters, Michel WJM; Aaronson, Neil K.; Harten, Wim H. van |
+| 25 | Nimgaonkar, Vivek; Aggarwal, Charu; Berman, Abigail T.; Gabriel, Peter; Shulman, Lawrence N.; Kucharczuk, John; Roy, Megan; Bauml, Joshua M.; Singh, Aditi P.; Cohen, Roger B.; Langer, Corey J.; Marmarelis, Melina E. |
+| 26 | Mkanta, William N.; Chumbler, Neale R.; Richardson, Lisa C.; Kobb, Rita F. |
+| 27 | Mooney, Kathi; Whisenant, Meagan S.; Wilson, Christina M.; Coombs, Lorinda A.; Lloyd, Jennifer; Alekhina, Natalya; Sloss, Elizabeth A.; Steinbach, Mary; Moraitis, Ann Marie; Berry, Patricia; Iacob, Eli; Donaldson, Gary |
+| 28 | Huang, Yaoru; Kabir, Muhammad Ashad; Upadhyay, Umashankar; Dhar, Eshita; Uddin, Mohy; Syed-Abdul, Shabbir |
+| 29 | Charles, Cécile; Bardet, Aurélie; Ibrahimi, Nusaïbah; Aromatario, Olivier; Cambon, Linda; Imbert, Alexis; Pons, Magali; Raynard, Bruno; Sauveplane, Dominique; Pouchepadass, Camille; Baudinet, Cédric; Lambotte, Olivier; Marabelle, Aurélien; Dauchy, Sarah |

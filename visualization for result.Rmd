@@ -326,3 +326,11 @@ data_extract|>
   knitr::kable()
 ```
 
+# author name reference
+
+```{r}
+data_extract|>
+  select(id, author)|>
+  knitr::kable()
+```
+
