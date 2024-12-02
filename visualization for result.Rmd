@@ -2,7 +2,7 @@
 title: "Visualization"
 author: "Polly Wu (rw3031)"
 date: "2024-11-07"
-output: github_document
+output: html_document
 ---
 
 ```{r}
@@ -15,7 +15,8 @@ library(rworldmap)
 ```{r}
 data_extract = 
   read_excel("./Data Extraction Sheet.xlsx")|>
-  janitor::clean_names()
+  janitor::clean_names()|>
+  filter(is.na(year)==FALSE, id!=18)
 ```
 
 # the plot for year of publication
@@ -290,7 +291,7 @@ data_extract|>
   select(id, theme, intervention_type, impact_of_technology_on_treatment_outcomes, intervention)|>
   separate_rows(theme, sep = ",")|>
   group_by(theme)|>
-  arrange(theme)|>
+  arrange(theme,intervention_type)|>
   knitr::kable()
 ```
 
@@ -302,7 +303,7 @@ data_extract|>
   select(id, theme,intervention_type, impact_of_technology_on_treatment_outcomes, intervention)|>
   separate_rows(theme, sep = ",")|>
   group_by(theme)|>
-  arrange(theme)|>
+  arrange(theme, intervention_type)|>
   knitr::kable()
 ```
 

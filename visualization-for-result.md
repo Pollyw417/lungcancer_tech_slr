@@ -477,10 +477,10 @@ data_extract|>
 |:---|---:|---:|---:|---:|---:|---:|
 | electronic questionnaire/assessment | 2 | 2 | NA | NA | NA | NA |
 | mobile application | 6 | 8 | 2 | 1 | 1 | NA |
-| telemedicine | 7 | 4 | 1 | 3 | 3 | 2 |
+| telemedicine | 6 | 4 | 1 | 3 | 3 | 1 |
 | virtual reality | NA | NA | NA | NA | NA | 1 |
 | wearable device | NA | 2 | NA | NA | 1 | NA |
-| website/online platform | 5 | 3 | 1 | 5 | 1 | 5 |
+| website/online platform | 4 | 3 | 1 | 5 | 1 | 5 |
 
 ``` r
 data_extract|>
@@ -507,16 +507,16 @@ data_extract|>
 | mobile application | education and information delivery | 1 | NA | NA | NA | NA | NA |
 | mobile application | monitoring and tracking | 5 | 3 | NA | NA | NA | NA |
 | mobile application | promotion of healthy behavior | NA | 1 | NA | NA | NA | NA |
-| telemedicine | communication and coordination | 4 | NA | 1 | 1 | 1 | NA |
+| telemedicine | communication and coordination | 4 | NA | 1 | 1 | NA | NA |
 | telemedicine | decision support and guidance | NA | NA | 1 | NA | NA | NA |
 | telemedicine | education and information delivery | 1 | NA | 1 | NA | 1 | NA |
-| telemedicine | emotional and social support | NA | NA | 1 | NA | 1 | NA |
+| telemedicine | emotional and social support | NA | NA | 1 | NA | NA | NA |
 | telemedicine | monitoring and tracking | 3 | NA | 1 | NA | NA | NA |
 | telemedicine | promotion of healthy behavior | 1 | NA | 1 | NA | 1 | NA |
 | virtual reality | emotional and social support | 1 | NA | NA | NA | NA | NA |
 | wearable device | monitoring and tracking | 2 | NA | NA | NA | NA | NA |
 | wearable device | promotion of healthy behavior | 1 | NA | NA | NA | NA | NA |
-| website/online platform | communication and coordination | 3 | 1 | NA | 1 | NA | NA |
+| website/online platform | communication and coordination | 3 | 1 | NA | NA | NA | NA |
 | website/online platform | decision support and guidance | NA | NA | NA | NA | NA | 1 |
 | website/online platform | education and information delivery | 3 | NA | NA | 1 | NA | 1 |
 | website/online platform | emotional and social support | 3 | 1 | NA | 1 | NA | NA |
@@ -548,16 +548,16 @@ data_extract|>
 | mobile application | education and information delivery | 23 | NA | NA | NA | NA | NA |
 | mobile application | monitoring and tracking | 2, 3, 15, 23, 27 | 4, 14, 21 | NA | NA | NA | NA |
 | mobile application | promotion of healthy behavior | NA | 4 | NA | NA | NA | NA |
-| telemedicine | communication and coordination | 12, 19, 26, 29 | NA | 9 | 25 | 8 | NA |
+| telemedicine | communication and coordination | 12, 19, 26, 29 | NA | 9 | 25 | NA | NA |
 | telemedicine | decision support and guidance | NA | NA | 9 | NA | NA | NA |
 | telemedicine | education and information delivery | 29 | NA | 1 | NA | 8 | NA |
-| telemedicine | emotional and social support | NA | NA | 9 | NA | 8 | NA |
+| telemedicine | emotional and social support | NA | NA | 9 | NA | NA | NA |
 | telemedicine | monitoring and tracking | 12, 19, 26 | NA | 9 | NA | NA | NA |
 | telemedicine | promotion of healthy behavior | 29 | NA | 1 | NA | 8 | NA |
 | virtual reality | emotional and social support | 10 | NA | NA | NA | NA | NA |
 | wearable device | monitoring and tracking | 20, 28 | NA | NA | NA | NA | NA |
 | wearable device | promotion of healthy behavior | 20 | NA | NA | NA | NA | NA |
-| website/online platform | communication and coordination | 6, 11, 22 | 17 | NA | 5 | NA | NA |
+| website/online platform | communication and coordination | 6, 11, 22 | 17 | NA | NA | NA | NA |
 | website/online platform | decision support and guidance | NA | NA | NA | NA | NA | 16 |
 | website/online platform | education and information delivery | 11, 18, 24 | NA | NA | 5 | NA | 16 |
 | website/online platform | emotional and social support | 6, 22, 24 | 17 | NA | 5 | NA | NA |
@@ -577,15 +577,12 @@ data_extract|>
 
 | id | theme | intervention_type | impact_of_technology_on_treatment_outcomes | intervention |
 |---:|:---|:---|:---|:---|
-| 5 | communication and coordination | website/online platform | Improved decision-making, emotional support, reduced anxiety. | Web-based Q&A platform on DLIC website. |
-| 8 | communication and coordination | telemedicine | High adherence to the program; improved functional capacity, improving trajectory for patient distress | Telehealth sessions with PT/OT to improve physical activity before and after surgery. |
 | 25 | communication and coordination | telemedicine | Time to treatment initiation did not differ between telemedicine and in-person visits across all treatment modalities, for patients who are newly diagnosied the median time from referral to initial visit were shorter among the telemedicine group | Telemedicine visits via phone or video conference |
 | 16 | decision support and guidance | website/online platform | Website improved patient understanding of SABR and helped reduce anxiety based on the qualitative outcome | A website designed to provide treatment information for early-stage lung cancer patients considering SABR |
 | 5 | education and information delivery | website/online platform | Improved decision-making, emotional support, reduced anxiety. | Web-based Q&A platform on DLIC website. |
 | 8 | education and information delivery | telemedicine | High adherence to the program; improved functional capacity, improving trajectory for patient distress | Telehealth sessions with PT/OT to improve physical activity before and after surgery. |
 | 16 | education and information delivery | website/online platform | Website improved patient understanding of SABR and helped reduce anxiety based on the qualitative outcome | A website designed to provide treatment information for early-stage lung cancer patients considering SABR |
 | 5 | emotional and social support | website/online platform | Improved decision-making, emotional support, reduced anxiety. | Web-based Q&A platform on DLIC website. |
-| 8 | emotional and social support | telemedicine | High adherence to the program; improved functional capacity, improving trajectory for patient distress | Telehealth sessions with PT/OT to improve physical activity before and after surgery. |
 | 8 | promotion of healthy behavior | telemedicine | High adherence to the program; improved functional capacity, improving trajectory for patient distress | Telehealth sessions with PT/OT to improve physical activity before and after surgery. |
 
 # during treatment
@@ -603,10 +600,8 @@ data_extract|>
 | id | theme | intervention_type | impact_of_technology_on_treatment_outcomes | intervention |
 |---:|:---|:---|:---|:---|
 | 2 | communication and coordination | mobile application | report of relevant symptoms after chemotherapy | A Lalaby App that require patient to report activities/symptoms twice a day, and complete a questionnaire on QOL weekly |
-| 5 | communication and coordination | website/online platform | Improved decision-making, emotional support, reduced anxiety. | Web-based Q&A platform on DLIC website. |
 | 6 | communication and coordination | website/online platform | Improved communication, enhanced engagement, better psychosocial needs identification, easier planning of care activites, high reponse rate for patients during follow up | Digital platform for patient reported outcome monitoring and follow-up. |
 | 7 | communication and coordination | electronic questionnaire/assessment | 90.9% compliance rate for lung cancer patients, enhanced communication, symptom management, and care adjustments. | Patients completed HRQoL questionnaires before each visit using tablets or computers. |
-| 8 | communication and coordination | telemedicine | High adherence to the program; improved functional capacity, improving trajectory for patient distress | Telehealth sessions with PT/OT to improve physical activity before and after surgery. |
 | 9 | communication and coordination | telemedicine | Improved identification of patient needs and patient report improved quality of life at follow up assessment, emotional support, 75% reduction in high concerns | Patients completed eSPARC electronic questionnaires monthly, combined with telephone consultations. |
 | 11 | communication and coordination | website/online platform | Reduced symptom distress in CHESS arm versus Internet arm at 4 and 6 months, with possible survival benefit for CHESS users | Online support system (CHESS) providing lung cancer information, caregiver resources, and communication with clinicians and social networks |
 | 12 | communication and coordination | telemedicine | Telehealth visits were found equivalent to in-person care in maintaining quality of life, no difference in satisfaction with care, anxiety and depression symptoms, use of approach-oriented or avoidant coping strategies, or perceptions of the primary goal of treatment and curability of their cancer | Early palliative care via secure video |
@@ -632,7 +627,6 @@ data_extract|>
 | 29 | education and information delivery | telemedicine | A signifcant 2.1 point decrease in fatigue level comparing pre- and post programme scores. Patients show increase in moderate physical acvtivity time, and intrinsic motivation to practice PA | Six-month videoconference-based PA program combining supervised and autonomous sessions targeting fatigue reduction |
 | 5 | emotional and social support | website/online platform | Improved decision-making, emotional support, reduced anxiety. | Web-based Q&A platform on DLIC website. |
 | 6 | emotional and social support | website/online platform | Improved communication, enhanced engagement, better psychosocial needs identification, easier planning of care activites, high reponse rate for patients during follow up | Digital platform for patient reported outcome monitoring and follow-up. |
-| 8 | emotional and social support | telemedicine | High adherence to the program; improved functional capacity, improving trajectory for patient distress | Telehealth sessions with PT/OT to improve physical activity before and after surgery. |
 | 9 | emotional and social support | telemedicine | Improved identification of patient needs and patient report improved quality of life at follow up assessment, emotional support, 75% reduction in high concerns | Patients completed eSPARC electronic questionnaires monthly, combined with telephone consultations. |
 | 10 | emotional and social support | virtual reality | patients had an altered perception of time, no signficant difference in symptom distress, no cybersickness | VR distraction with scenarios including deep sea diving, art museum exploration, ancient worlds, and solving a mystery |
 | 22 | emotional and social support | website/online platform | Patients in the CHESS+CR group had improved symptoms reported more often than those in CHESS-only (53% vs. 26%), web-based reporting let to more timely symptom management | The CHESS+CR (Clinician Report) eHealth system designed for caregivers with a symptom-reporting system with alerts sent to clinicians for severe patient symptoms |
@@ -673,7 +667,6 @@ data_extract|>
 
 | id | theme | intervention_type | impact_of_technology_on_treatment_outcomes | intervention |
 |---:|:---|:---|:---|:---|
-| 8 | communication and coordination | telemedicine | High adherence to the program; improved functional capacity, improving trajectory for patient distress | Telehealth sessions with PT/OT to improve physical activity before and after surgery. |
 | 9 | communication and coordination | telemedicine | Improved identification of patient needs and patient report improved quality of life at follow up assessment, emotional support, 75% reduction in high concerns | Patients completed eSPARC electronic questionnaires monthly, combined with telephone consultations. |
 | 14 | communication and coordination | mobile application | Significant improvement in survival with median survival of 22.4 months in the experimental group versus 16.7 months in the control group | self-reported symptom assessment via web application, alerts to oncologist for early intervention based on predefined criteria |
 | 17 | communication and coordination | website/online platform | Improved quality of life (SF-36 scores) and high patient satisfaction in the remote group compared to conventional care group | Internet-based pain management intervention, including remote pain control, lifestyle advice, and psychological support via smartphones and internet |
@@ -681,7 +674,6 @@ data_extract|>
 | 9 | decision support and guidance | telemedicine | Improved identification of patient needs and patient report improved quality of life at follow up assessment, emotional support, 75% reduction in high concerns | Patients completed eSPARC electronic questionnaires monthly, combined with telephone consultations. |
 | 1 | education and information delivery | telemedicine | intervention participants had statistically significant and clinically meaningful improved HRQL (SGRQ total, symptom, and impact scores) (standardized effect size: -1.03 to -1.30). | 12-week intervention, delivered via telemedicine, consisted of exercise training (IMT + walking), education, and behavior change support. |
 | 8 | education and information delivery | telemedicine | High adherence to the program; improved functional capacity, improving trajectory for patient distress | Telehealth sessions with PT/OT to improve physical activity before and after surgery. |
-| 8 | emotional and social support | telemedicine | High adherence to the program; improved functional capacity, improving trajectory for patient distress | Telehealth sessions with PT/OT to improve physical activity before and after surgery. |
 | 9 | emotional and social support | telemedicine | Improved identification of patient needs and patient report improved quality of life at follow up assessment, emotional support, 75% reduction in high concerns | Patients completed eSPARC electronic questionnaires monthly, combined with telephone consultations. |
 | 17 | emotional and social support | website/online platform | Improved quality of life (SF-36 scores) and high patient satisfaction in the remote group compared to conventional care group | Internet-based pain management intervention, including remote pain control, lifestyle advice, and psychological support via smartphones and internet |
 | 4 | monitoring and tracking | mobile application | Positive intentions from HCPs and patients to use the application; improved confidence in recovery and reduced insecurity about symptoms and rehabilitation progress. | A telehealthcare application consisting of symptom and physical activity monitoring using sensors, and a web-based physical exercise program. |
