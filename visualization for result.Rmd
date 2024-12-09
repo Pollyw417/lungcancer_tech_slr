@@ -173,9 +173,10 @@ data_extract|>
 ```
 ## plot for pre-post over intervention type
 
-```{r}
+```{r width = 20}
 library(viridis)
 
+plot_prepost = 
 data_extract |>
   select(id, pre_post, intervention_type) |>
   separate_rows(pre_post, sep = ",") |>
@@ -183,12 +184,14 @@ data_extract |>
   geom_bar() +
   scale_fill_viridis_d() +
   theme(
-      legend.position = "bottom",
+      legend.position = "right",
       panel.background = element_rect(fill = "white", color = NA),
       plot.background = element_rect(fill = "white", color = NA),
       panel.grid.major = element_blank(),
       panel.grid.minor = element_blank()
     )
+
+ggsave("pre-post vs. intervention type.png", plot = plot_prepost, width = 10, height = 8)
 ```
 
 ## plot for theme over intervention type
@@ -211,7 +214,7 @@ theme_intervention =
 
 theme_intervention
 
-
+ggsave("theme vs. intervention type.png", plot = theme_intervention, width = 12, height = 8)
 ```
 
 
