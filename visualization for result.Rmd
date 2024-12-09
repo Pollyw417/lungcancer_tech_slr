@@ -16,7 +16,7 @@ library(rworldmap)
 data_extract = 
   read_excel("./Data Extraction Sheet.xlsx")|>
   janitor::clean_names()|>
-  filter(is.na(year)==FALSE, id!=18,id!=11)
+  filter(is.na(year)==FALSE, id!=18,id!=11, id!=20,id!=28)
 ```
 
 # the plot for year of publication
