@@ -16,7 +16,7 @@ library(rworldmap)
 data_extract = 
   read_excel("./Data Extraction Sheet.xlsx")|>
   janitor::clean_names()|>
-  filter(is.na(year)==FALSE, id!=18,id!=11, id!=20,id!=28)
+  filter(is.na(year)==FALSE, id!=18,id!=11, id!=20,id!=28, id!=4)
 ```
 
 # the plot for year of publication
@@ -52,6 +52,11 @@ data_extract|>
 
 country_count|>
   knitr::kable()
+
+
+data_extract|>
+  select(id, country_region)|>
+  arrange(country_region)
 ```
 
 ```{r}
@@ -85,12 +90,13 @@ data_extract|>
 
 ```{r}
 data_extract|>
+  select(id, setting)|>
   group_by(setting)|>
   summarise(count = n())|>
   arrange(desc(count))
 
 data_extract|>
-  filter(setting == "home-based")
+  filter(setting == "clinical based")
 ```
 
 ## stage
@@ -138,6 +144,13 @@ data_extract|>
   summarise(count = n(),
             id=paste(unique(id),collapse = ","))|>
   arrange(treatment_2, desc(count))
+
+
+data_extract|>
+  select(challenge_recode, treatment_2, id)|>
+  separate_rows(treatment_2, sep = ",")|>
+  group_by(treatment_2)|>
+  summarise(count=n())
 ```
 
 
