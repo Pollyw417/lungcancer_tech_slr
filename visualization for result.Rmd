@@ -22,12 +22,17 @@ data_extract =
 # the plot for year of publication
 
 ```{r}
-year_plot =
-data_extract|>
-  ggplot(aes(x=year))+geom_histogram( fill = "#08519c")+
-  theme_classic()+
-  labs(x = "Year of Publication",
-       title = "Distribution of Year of Publication")
+year_plot <- 
+  data_extract |>
+  ggplot(aes(x = year)) +
+  geom_histogram(fill = "#08519c", binwidth = 1) +
+  geom_text(stat = "count", aes(label = after_stat(count)), vjust = -0.5) +
+  theme_classic() +
+  labs(
+    x = "Year of Publication",
+    title = "Distribution of Year of Publication"
+  )
+
 
 year_plot
 
