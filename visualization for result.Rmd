@@ -335,7 +335,7 @@ data_extract|>
 data_extract|>
   separate_rows(challenge_theme, sep = ",")|>
   filter(challenge_theme != "NA")|>
-  select(id, challenge_theme, challenges_of_technology_use)|>
+  select(id, challenge_theme, title, challenges_of_technology_use)|>
   arrange(challenge_theme)|>
   knitr::kable()
 
